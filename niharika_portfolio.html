@@ -40,12 +40,10 @@
     overflow-x: hidden;
   }
 
-  /* scrollbar */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 99px; }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -78,12 +76,10 @@
   }
   .nav-cta:hover { opacity: 0.85; }
 
-  /* hamburger */
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
   .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
   .mobile-menu { display: none; }
 
-  /* ── HERO ── */
   #hero {
     min-height: 100vh;
     display: flex; align-items: center;
@@ -176,7 +172,6 @@
   .scroll-line { width: 1px; height: 40px; background: linear-gradient(var(--accent), transparent); animation: scrollAnim 2s infinite; }
   @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
-  /* ── SECTION BASE ── */
   section { padding: 7rem 5vw; }
   .section-label {
     font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em;
@@ -193,7 +188,6 @@
     margin-bottom: 3rem;
   }
 
-  /* ── ABOUT ── */
   #about { background: var(--bg2); }
   .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
   .about-avatar-wrap { position: relative; }
@@ -233,7 +227,6 @@
     padding: 0.3rem 0.85rem;
   }
 
-  /* ── SKILLS ── */
   #skills { background: var(--bg); }
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
   .skill-card {
@@ -261,7 +254,6 @@
   }
   .skill-card:hover .skill-tag { color: var(--accent); border-color: rgba(99,185,255,0.25); }
 
-  /* skill bars */
   .skill-bars { margin-top: 3rem; display: grid; gap: 1rem; max-width: 700px; }
   .bar-row { display: flex; align-items: center; gap: 1rem; }
   .bar-label { font-size: 0.85rem; font-weight: 500; color: var(--muted); min-width: 80px; }
@@ -273,7 +265,6 @@
   }
   .bar-pct { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); min-width: 36px; text-align: right; }
 
-  /* ── PROJECTS ── */
   #projects { background: var(--bg2); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
   .project-card {
@@ -289,6 +280,14 @@
   }
   .project-card:hover { border-color: rgba(99,185,255,0.2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .project-card:hover::after { transform: scaleX(1); }
+
+  /* ── ANNE featured card ── */
+  .project-card.featured {
+    border-color: rgba(99,185,255,0.2);
+    background: linear-gradient(135deg, #161d28 60%, rgba(99,185,255,0.04));
+  }
+  .project-card.featured::after { background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
+
   .project-num {
     font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim);
     letter-spacing: 0.1em;
@@ -310,8 +309,38 @@
     font-family: var(--font-mono);
   }
   .project-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }
+  .project-status.done { color: var(--accent2); }
+  .project-status.done::before { background: var(--accent2); animation: none; }
 
-  /* ── EXPERIENCE ── */
+  /* ANNE metrics strip */
+  .anne-metrics {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;
+  }
+  .anne-metric {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    background: rgba(99,185,255,0.08); border: 1px solid rgba(99,185,255,0.18);
+    border-radius: 6px; padding: 0.3rem 0.7rem; color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ANNE bullet points */
+  .anne-bullets { list-style: none; margin-top: 2px; }
+  .anne-bullets li {
+    font-size: 0.85rem; color: var(--muted); font-weight: 300;
+    padding: 0.2rem 0; display: flex; gap: 0.6rem; line-height: 1.55;
+  }
+  .anne-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }
+  .anne-bullets li strong { color: var(--text); font-weight: 500; }
+
+  .anne-github {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
+    text-decoration: none; border: 1px solid rgba(99,185,255,0.2);
+    border-radius: 6px; padding: 0.3rem 0.8rem; margin-top: 2px;
+    transition: all 0.2s; width: fit-content;
+  }
+  .anne-github:hover { background: rgba(99,185,255,0.08); }
+
   #experience { background: var(--bg); }
   .timeline { position: relative; padding-left: 2.5rem; }
   .timeline::before {
@@ -336,7 +365,6 @@
   }
   .tl-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
 
-  /* ── EDUCATION ── */
   #education { background: var(--bg2); }
   .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
   .edu-card {
@@ -363,7 +391,6 @@
     background: rgba(99,185,255,0.04); border: 1px solid rgba(99,185,255,0.08);
   }
 
-  /* ── CERTIFICATIONS ── */
   .cert-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
   .cert-chip {
     display: inline-flex; align-items: center; gap: 8px;
@@ -375,11 +402,8 @@
   .cert-chip:hover { border-color: var(--accent3); color: var(--accent3); }
   .cert-icon { font-size: 1rem; }
 
-  /* ── CONTACT ── */
   #contact { background: var(--bg); }
-  .contact-inner {
-    max-width: 700px; margin: 0 auto; text-align: center;
-  }
+  .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
   .contact-headline {
     font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800; letter-spacing: -0.03em; color: var(--text);
@@ -401,12 +425,10 @@
   .contact-email {
     font-family: var(--font-head); font-size: 1.4rem; font-weight: 700;
     color: var(--text); text-decoration: none; border-bottom: 2px solid transparent;
-    padding-bottom: 2px; transition: all 0.25s;
-    letter-spacing: -0.02em;
+    padding-bottom: 2px; transition: all 0.25s; letter-spacing: -0.02em;
   }
   .contact-email:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* ── FOOTER ── */
   footer {
     text-align: center; padding: 2rem 5vw;
     border-top: 1px solid var(--border);
@@ -415,13 +437,11 @@
   }
   footer span { color: var(--accent); }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0} to{opacity:1} }
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .nav-links, .nav-cta { display: none; }
     .hamburger { display: flex; }
@@ -572,7 +592,8 @@
         <span class="skill-tag">JavaScript</span>
         <span class="skill-tag">R</span>
         <span class="skill-tag">HTML/CSS</span>
-        <span class="skill-tag">8086 Assembly</span>
+        <span class="skill-tag">Embedded C</span>
+        <span class="skill-tag">SQL</span>
       </div>
     </div>
     <div class="skill-card reveal">
@@ -587,61 +608,79 @@
         <span class="skill-tag">LIME</span>
         <span class="skill-tag">XGBoost</span>
         <span class="skill-tag">Random Forest</span>
+        <span class="skill-tag">AI Prediction Systems</span>
       </div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">🔧</div>
       <div class="skill-cat">Systems &amp; Algorithms</div>
       <div class="skill-tags">
-        <span class="skill-tag">HNSW</span>
-        <span class="skill-tag">AVX2 SIMD</span>
-        <span class="skill-tag">CMake</span>
-        <span class="skill-tag">Google Benchmark</span>
-        <span class="skill-tag">pybind11</span>
-        <span class="skill-tag">Google Test</span>
-        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Express.js</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Leaflet.js</span>
+        <span class="skill-tag">Google Maps API</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Embedded Systems</span>
+        <span class="skill-tag">Scheduling Algorithms</span>
+        <span class="skill-tag">Priority Queues</span>
       </div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">🗄️</div>
       <div class="skill-cat">Data &amp; Tools</div>
       <div class="skill-tags">
-        <span class="skill-tag">SQL / PL-SQL</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PL-SQL</span>
         <span class="skill-tag">Google Colab</span>
         <span class="skill-tag">Jupyter</span>
         <span class="skill-tag">RStudio</span>
         <span class="skill-tag">MATLAB</span>
         <span class="skill-tag">VS Code</span>
-        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Arduino</span>
       </div>
     </div>
   </div>
-
   <div class="skill-bars reveal" style="margin-top:3.5rem">
     <div class="bar-row">
       <span class="bar-label">Python</span>
-      <div class="bar-track"><div class="bar-fill" data-w="90"></div></div>
-      <span class="bar-pct">90%</span>
+      <div class="bar-track"><div class="bar-fill" data-w="89"></div></div>
+      <span class="bar-pct">89%</span>
     </div>
     <div class="bar-row">
       <span class="bar-label">C / C++</span>
+      <div class="bar-track"><div class="bar-fill" data-w="85"></div></div>
+      <span class="bar-pct">85%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">ML</span>
+      <div class="bar-track"><div class="bar-fill" data-w="84"></div></div>
+      <span class="bar-pct">84%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">DSA</span>
       <div class="bar-track"><div class="bar-fill" data-w="82"></div></div>
       <span class="bar-pct">82%</span>
     </div>
     <div class="bar-row">
-      <span class="bar-label">ML / DL</span>
-      <div class="bar-track"><div class="bar-fill" data-w="78"></div></div>
-      <span class="bar-pct">78%</span>
-    </div>
-    <div class="bar-row">
       <span class="bar-label">SQL</span>
-      <div class="bar-track"><div class="bar-fill" data-w="72"></div></div>
-      <span class="bar-pct">72%</span>
+      <div class="bar-track"><div class="bar-fill" data-w="80"></div></div>
+      <span class="bar-pct">80%</span>
     </div>
     <div class="bar-row">
-      <span class="bar-label">Java</span>
-      <div class="bar-track"><div class="bar-fill" data-w="65"></div></div>
-      <span class="bar-pct">65%</span>
+      <span class="bar-label">DL</span>
+      <div class="bar-track"><div class="bar-fill" data-w="79"></div></div>
+      <span class="bar-pct">79%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">OS dev</span>
+      <div class="bar-track"><div class="bar-fill" data-w="80"></div></div>
+      <span class="bar-pct">80%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Web Dev</span>
+      <div class="bar-track"><div class="bar-fill" data-w="83"></div></div>
+      <span class="bar-pct">83%</span>
     </div>
   </div>
 </section>
@@ -655,19 +694,62 @@
   </div>
   <div class="projects-grid">
 
-    <div class="project-card reveal">
+    <!-- ── ANNE — only card changed ── -->
+    <div class="project-card featured reveal">
       <div class="project-num">01 &mdash; Systems Engineering</div>
-      <div class="project-title">SIMD-Accelerated ANN Vector Search Engine</div>
-      <div class="project-desc">
-        Building an approximate nearest neighbor search engine in C++17 using the HNSW graph algorithm. Features AVX2 SIMD-optimized distance kernels, cache-friendly graph storage, and benchmarking against SIFT1M for recall–latency tradeoff analysis.
+      <div class="project-title">ANNE — Approximate Nearest Neighbor Engine</div>
+
+      <div class="anne-metrics">
+        <span class="anne-metric">99.6% recall@10</span>
+        <span class="anne-metric">100× vs brute-force</span>
+        <span class="anne-metric">4.9× SIMD speedup</span>
+        <span class="anne-metric">1M SIFT vectors</span>
       </div>
-      <div class="project-status">In Progress</div>
+
+      <ul class="anne-bullets">
+        <li>Implemented HNSW graph algorithm from scratch in C++17; indexed <strong>1M SIFT vectors</strong> achieving <strong>99.6% recall@10</strong> — within margin of production libraries like Faiss on the standard SIFT1M benchmark</li>
+        <li>Hand-wrote AVX2 SIMD distance kernels (<code style="font-family:var(--font-mono);font-size:0.78rem;background:rgba(99,185,255,0.08);padding:1px 4px;border-radius:3px">_mm256_fmadd_ps</code>) processing 8 floats/instruction; <strong>4.9× faster</strong> than scalar baseline on the search hot path</li>
+        <li>Delivered <strong>100× speedup</strong> over brute-force at 94% recall via cache-efficient flat vector storage and O(1) generation-based visited tracking</li>
+        <li>Shipped with <strong>45 Google Test unit tests</strong>, Google Benchmark microbenchmarks, and GitHub Actions CI pipeline</li>
+      </ul>
+
+      <a href="https://github.com/niharikakanithi9-lab/ANNE" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/niharikakanithi9-lab/ANNE
+      </a>
+
+      <div class="project-status done">Completed · SIFT1M Benchmarked</div>
+
       <div class="project-tech">
         <span class="tech-pill">C++17</span>
         <span class="tech-pill">HNSW</span>
         <span class="tech-pill">AVX2 SIMD</span>
         <span class="tech-pill">CMake</span>
         <span class="tech-pill">Google Benchmark</span>
+        <span class="tech-pill">Google Test</span>
+        <span class="tech-pill">GitHub Actions</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">02 &mdash; Full Stack Web Platform</div>
+      <div class="project-title">ResQNet — Community Disaster Response Platform</div>
+      <div class="project-desc">
+        Developed a full-stack disaster response platform enabling real-time coordination between citizens, volunteers, and authorities during emergencies. Implemented live SOS tracking, disaster alerts, safe-location assistance, and Google Maps-based navigation using Node.js, Express.js, MySQL, Leaflet.js, and OpenStreetMap. Future scope includes AI-based disaster prediction, weather sensor integration, and rescue-team coordination.
+      </div>
+      <div class="project-status">Active Development</div>
+      <div class="project-tech">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Express.js</span>
+        <span class="tech-pill">MySQL</span>
+        <span class="tech-pill">Leaflet.js</span>
+        <span class="tech-pill">OpenStreetMap</span>
+        <span class="tech-pill">Google Maps API</span>
+        <span class="tech-pill">REST APIs</span>
+        <span class="tech-pill">Git/GitHub</span>
       </div>
     </div>
 
@@ -716,10 +798,42 @@
       </div>
     </div>
 
+    <div class="project-card reveal">
+      <div class="project-num">05 &mdash; Embedded Systems</div>
+      <div class="project-title">Soil Moisture Level Monitoring System</div>
+      <div class="project-desc">
+        Developed an automated soil moisture monitoring system using Arduino and Embedded C. Implemented real-time sensor data acquisition, threshold-based alert logic, and actuator control using LEDs and buzzers to improve irrigation efficiency and prevent overwatering.
+      </div>
+      <div class="project-status done">Completed</div>
+      <div class="project-tech">
+        <span class="tech-pill">Embedded C</span>
+        <span class="tech-pill">Arduino</span>
+        <span class="tech-pill">Sensors</span>
+        <span class="tech-pill">Microcontrollers</span>
+        <span class="tech-pill">Arduino IDE</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">06 &mdash; Systems Programming</div>
+      <div class="project-title">Priority-Based Task Scheduler</div>
+      <div class="project-desc">
+        Built a task scheduling system in C++ using queue and priority queue data structures to support FIFO and priority-based execution. Implemented efficient scheduling operations and structured task management inspired by operating system and real-time scheduling concepts.
+      </div>
+      <div class="project-status done">Completed</div>
+      <div class="project-tech">
+        <span class="tech-pill">C++</span>
+        <span class="tech-pill">Data Structures</span>
+        <span class="tech-pill">Priority Queue</span>
+        <span class="tech-pill">Scheduling</span>
+        <span class="tech-pill">OOP</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- EXPERIENCE (Positions of Responsibility / Extracurricular) -->
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="reveal">
     <div class="section-label">Leadership &amp; Activities</div>
@@ -854,13 +968,11 @@
 </footer>
 
 <script>
-  // Mobile menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
   function closeMobile() { mobileMenu.classList.remove('open'); }
 
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
@@ -872,7 +984,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => obs.observe(el));
 
-  // Skill bars
   const barObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -885,13 +996,11 @@
   }, { threshold: 0.3 });
   document.querySelectorAll('.skill-bars').forEach(el => barObs.observe(el));
 
-  // Nav shadow on scroll
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').style.boxShadow =
       window.scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.4)' : 'none';
   });
 
-  // Stagger project cards
   document.querySelectorAll('.project-card').forEach((c, i) => {
     c.style.transitionDelay = (i * 0.08) + 's';
   });

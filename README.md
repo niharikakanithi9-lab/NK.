@@ -25,7 +25,7 @@ This portfolio showcases my projects, skills, experience, and background as a So
 
 ## Projects Featured
 
-- SIMD-Accelerated ANN Vector Search Engine (C++17)
+- ANNE - Approximate Nearest Neighbor Engine(C++17)
 - ResQNet — Community Disaster Response Platform
 - Garbage Classification ML Pipeline
 - SHAP vs LIME Interpretability Study
