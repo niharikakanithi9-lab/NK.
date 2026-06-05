@@ -708,7 +708,7 @@
 
       <ul class="anne-bullets">
         <li>Implemented HNSW graph algorithm from scratch in C++17; indexed <strong>1M SIFT vectors</strong> achieving <strong>99.6% recall@10</strong> — within margin of production libraries like Faiss on the standard SIFT1M benchmark</li>
-        <li>Hand-wrote AVX2 SIMD distance kernels (<code style="font-family:var(--font-mono);font-size:0.78rem;background:rgba(99,185,255,0.08);padding:1px 4px;border-radius:3px">_mm256_fmadd_ps</code>) processing 8 floats/instruction; <strong>4.9× faster</strong> than scalar baseline on the search hot path</li>
+        <li>Hand-wrote AVX2 SIMD distance kernels (_mm256_fmadd_ps) processing 8 floats/instruction; <strong>4.9× faster</strong> than scalar baseline on the search hot path</li>
         <li>Delivered <strong>100× speedup</strong> over brute-force at 94% recall via cache-efficient flat vector storage and O(1) generation-based visited tracking</li>
         <li>Shipped with <strong>45 Google Test unit tests</strong>, Google Benchmark microbenchmarks, and GitHub Actions CI pipeline</li>
       </ul>
