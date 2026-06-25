@@ -332,14 +332,28 @@
   .anne-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }
   .anne-bullets li strong { color: var(--text); font-weight: 500; }
 
-  .anne-github {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
-    text-decoration: none; border: 1px solid rgba(99,185,255,0.2);
-    border-radius: 6px; padding: 0.3rem 0.8rem; margin-top: 2px;
-    transition: all 0.2s; width: fit-content;
-  }
-  .anne-github:hover { background: rgba(99,185,255,0.08); }
+ .anne-github{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 16px;
+
+    border:1px solid var(--border);
+    border-radius:10px;
+
+    text-decoration:none;
+    color:var(--text);
+    background:var(--card);
+
+    transition:.25s;
+}
+
+.anne-github:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    transform:translateY(-2px);
+}
 
   #experience { background: var(--bg); }
   .timeline { position: relative; padding-left: 2.5rem; }
