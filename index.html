@@ -235,10 +235,14 @@
     transition: all 0.3s; position: relative; overflow: hidden;
   }
   .skill-card::before {
-    content: ''; position: absolute; inset: 0;
+    content: '';
+    position: absolute;
+    inset: 0;
     background: linear-gradient(135deg, rgba(99,185,255,0.04) 0%, transparent 60%);
-    opacity: 0; transition: opacity 0.3s;
-  }
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
   .skill-card:hover { border-color: var(--border2); transform: translateY(-4px); }
   .skill-card:hover::before { opacity: 1; }
   .skill-icon { font-size: 1.6rem; margin-bottom: 1rem; }
