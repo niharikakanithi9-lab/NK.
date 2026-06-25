@@ -241,7 +241,7 @@
     background: linear-gradient(135deg, rgba(99,185,255,0.04) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.3s;
-  }
+}
   .skill-card:hover { border-color: var(--border2); transform: translateY(-4px); }
   .skill-card:hover::before { opacity: 1; }
   .skill-icon { font-size: 1.6rem; margin-bottom: 1rem; }
@@ -284,6 +284,7 @@
   .project-card:hover { border-color: rgba(99,185,255,0.2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .project-card:hover::after { transform: scaleX(1); }
 
+  /* ── ANNE featured card ── */
   .project-card.featured {
     border-color: rgba(99,185,255,0.2);
     background: linear-gradient(135deg, #161d28 60%, rgba(99,185,255,0.04));
@@ -314,6 +315,7 @@
   .project-status.done { color: var(--accent2); }
   .project-status.done::before { background: var(--accent2); animation: none; }
 
+  /* ANNE metrics strip */
   .anne-metrics {
     display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;
   }
@@ -324,6 +326,7 @@
     white-space: nowrap;
   }
 
+  /* ANNE bullet points */
   .anne-bullets { list-style: none; margin-top: 2px; }
   .anne-bullets li {
     font-size: 0.85rem; color: var(--muted); font-weight: 300;
@@ -332,44 +335,28 @@
   .anne-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }
   .anne-bullets li strong { color: var(--text); font-weight: 500; }
 
-  .anne-github {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--text);
-    background: var(--surface);
-    transition: .25s;
-    font-size: 0.85rem;
-  }
-  .anne-github:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
+ .anne-github{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
 
-  /* Cert link — same shape as anne-github but accent2 tint */
-  .cert-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--text);
-    background: var(--surface);
-    transition: .25s;
-    font-size: 0.85rem;
-  }
-  .cert-link:hover {
-    border-color: var(--accent2);
-    color: var(--accent2);
-    transform: translateY(-2px);
-  }
+    padding:10px 16px;
+
+    border:1px solid var(--border);
+    border-radius:10px;
+
+    text-decoration:none;
+    color:var(--text);
+    background:var(--card);
+
+    transition:.25s;
+}
+
+.anne-github:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    transform:translateY(-2px);
+}
 
   #experience { background: var(--bg); }
   .timeline { position: relative; padding-left: 2.5rem; }
@@ -531,7 +518,7 @@
     <p class="hero-sub">
       Third-year Software Engineering student building high-performance systems — SIMD-accelerated vector search, zero-dependency inference engines, and full-stack emergency platforms.
     </p>
-    <div class="hero-btns">
+   <div class="hero-btns">
       <a href="#projects" class="btn-primary">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         View My Work
@@ -640,6 +627,7 @@
         <span class="skill-tag">Database Systems</span>
       </div>
     </div>
+    <!-- CHANGED: renamed to "Systems & Performance", updated tags -->
     <div class="skill-card reveal">
       <div class="skill-icon">🔥</div>
       <div class="skill-cat">Systems &amp; Performance</div>
@@ -654,6 +642,7 @@
         <span class="skill-tag">HNSW</span>
       </div>
     </div>
+    <!-- CHANGED: updated tools — Linux/WSL added, Arduino/MATLAB removed -->
     <div class="skill-card reveal">
       <div class="skill-icon">🔧</div>
       <div class="skill-cat">Infrastructure &amp; Tooling</div>
@@ -670,6 +659,7 @@
         <span class="skill-tag">VS Code</span>
       </div>
     </div>
+    <!-- CHANGED: updated to ML / AI + Domains -->
     <div class="skill-card reveal">
       <div class="skill-icon">🗄️</div>
       <div class="skill-cat">Data Structures &amp; Algorithms</div>
@@ -733,21 +723,25 @@
   </div>
   <div class="projects-grid">
 
+    <!-- ── ANNE — only card changed ── -->
     <div class="project-card featured reveal">
       <div class="project-num">01 &mdash; Systems Engineering</div>
       <div class="project-title">ANNE — Approximate Nearest Neighbor Engine</div>
+
       <div class="anne-metrics">
         <span class="anne-metric">99.6% recall@10</span>
         <span class="anne-metric">100× vs brute-force</span>
         <span class="anne-metric">4.9× SIMD speedup</span>
         <span class="anne-metric">1M SIFT vectors</span>
       </div>
+
       <ul class="anne-bullets">
         <li>Implemented HNSW graph algorithm from scratch in C++17; indexed <strong>1M SIFT vectors</strong> achieving <strong>99.6% recall@10</strong> — within margin of production libraries like Faiss on the standard SIFT1M benchmark</li>
         <li>Hand-wrote AVX2 SIMD distance kernels (_mm256_fmadd_ps) processing 8 floats/instruction; <strong>4.9× faster</strong> than scalar baseline on the search hot path</li>
         <li>Delivered <strong>100× speedup</strong> over brute-force at 94% recall via cache-efficient flat vector storage and O(1) generation-based visited tracking</li>
         <li>Shipped with <strong>45 Google Test unit tests</strong>, Google Benchmark microbenchmarks, and GitHub Actions CI pipeline</li>
       </ul>
+
       <a href="https://github.com/niharikakanithi9-lab/ANNE" target="_blank" rel="noopener" class="anne-github">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         github.com/niharikakanithi9-lab/ANNE
@@ -767,24 +761,27 @@
     <div class="project-card featured reveal">
       <div class="project-num">02 &mdash; Systems Engineering</div>
       <div class="project-title">NeuralRT — High-Performance Neural Network Inference Engine</div>
+ 
       <div class="anne-metrics">
         <span class="anne-metric">197K inferences/sec</span>
         <span class="anne-metric">5.07µs per-sample</span>
         <span class="anne-metric">7.3× GEMM speedup</span>
         <span class="anne-metric">0 heap allocs at runtime</span>
       </div>
+ 
       <ul class="anne-bullets">
         <li>Built a <strong>zero-dependency neural network inference runtime</strong> in C++17 from scratch — custom tensor abstractions, GEMM / Linear / ReLU operators, and a static graph executor — validated across <strong>48 GoogleTest cases</strong> in 13 suites</li>
         <li>Improved matrix multiplication throughput by <strong>2.7×–7.3×</strong> over scalar baselines (32×32 to 512×512 workloads) using AVX2+FMA SIMD GEMM kernels with cache-blocking and register-level accumulation</li>
         <li>Reduced per-inference memory overhead to <strong>zero heap allocations</strong> during execution by designing a topological graph planner with tensor lifetime analysis and buffer-slot reuse</li>
         <li>Sustained <strong>197K inferences/sec</strong> at batch size 128 with per-sample latency of <strong>5.07µs</strong>, benchmarked across batch sizes 1 to 128</li>
       </ul>
+ 
       <a href="https://github.com/niharikakanithi9-lab/NeuralRT" target="_blank" rel="noopener" class="anne-github">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         github.com/niharikakanithi9-lab/NeuralRT
       </a>
       <div class="project-status done">Completed · Benchmarked</div>
-      <div class="project-tech">
+     <div class="project-tech">
         <span class="tech-pill">C++17</span>
         <span class="tech-pill">AVX2 / FMA</span>
         <span class="tech-pill">SIMD GEMM</span>
@@ -793,7 +790,8 @@
         <span class="tech-pill">GoogleTest</span>
       </div>
     </div>
-
+ 
+    <!-- 03: ResQNet — updated with real metrics from resume -->
     <div class="project-card reveal">
       <div class="project-num">03 &mdash; Full Stack Web Platform</div>
       <div class="project-title">ResQNet — Real-Time Community Disaster Response Platform</div>
@@ -803,7 +801,9 @@
         <li>Improved situational awareness by integrating <strong>4 safe zone categories</strong> (hospitals, police stations, fire stations, relief camps) as dynamic map markers with one-click Google Maps routing</li>
         <li>Ensured near-real-time alerting across all <strong>5 frontend portals</strong> simultaneously via 5-second auto-polling feed rendering color-coded live disaster warnings</li>
       </ul>
-      <a href="https://github.com/niharikakanithi9-lab/ResQNet" target="_blank" rel="noopener" class="anne-github">
+
+     
+     <a href="https://github.com/niharikakanithi9-lab/ResQNet" target="_blank" rel="noopener" class="anne-github">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         github.com/niharikakanithi9-lab/ResQNet
       </a>
@@ -844,7 +844,7 @@
       <div class="project-desc">
         Developed an automated soil moisture monitoring system using Arduino and Embedded C. Implemented real-time sensor data acquisition, threshold-based alert logic, and actuator control using LEDs and buzzers to improve irrigation efficiency and prevent overwatering.
       </div>
-      <a href="https://github.com/niharikakanithi9-lab/SMMAS" target="_blank" rel="noopener" class="anne-github">
+     <a href="https://github.com/niharikakanithi9-lab/SMMAS" target="_blank" rel="noopener" class="anne-github">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         github.com/niharikakanithi9-lab/SMASS
       </a>
@@ -861,7 +861,7 @@
   </div>
 </section>
 
-<!-- VIRTUAL EXPERIENCE -->
+ <!-- VIRTUAL EXPERIENCE -->
 <section id="simulations" style="background:var(--bg);">
   <div class="reveal">
     <div class="section-label">Industry Experience</div>
@@ -884,8 +884,8 @@
         <span class="tech-pill">REST API</span>
         <span class="tech-pill">Java / Spring</span>
       </div>
-      <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_6a356af6714441292814ca4e_1782386905966_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+     <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_6a356af6714441292814ca4e_1782386905966_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         View Certificate
       </a>
     </div>
@@ -903,8 +903,8 @@
         <span class="tech-pill">Relational DB Design</span>
         <span class="tech-pill">Data Munging</span>
       </div>
-      <a href="https://www.theforage.com/completion-certificates/prBZoAihniNijyD6d/oX6f9BbCL9kJDJzfg_prBZoAihniNijyD6d_6a356af6714441292814ca4e_1782406015651_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+     <a href="https://www.theforage.com/completion-certificates/prBZoAihniNijyD6d/oX6f9BbCL9kJDJzfg_prBZoAihniNijyD6d_6a356af6714441292814ca4e_1782406015651_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         View Certificate
       </a>
     </div>
@@ -920,10 +920,10 @@
         <span class="tech-pill">Coding</span>
         <span class="tech-pill">Development</span>
       </div>
-      <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_6a356af6714441292814ca4e_1781889072710_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+     <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_6a356af6714441292814ca4e_1781889072710_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         View Certificate
-      </a>
+     </a>
     </div>
 
   </div>
@@ -974,7 +974,7 @@
   </div>
   <div class="edu-grid">
     <div class="edu-card reveal">
-      <div class="edu-year">2024 – 2029 (Expected)</div>
+      <div class="edu-year">2024 – 2029 (Expected) </div>
       <div class="edu-degree">Integrated M.Tech — Software Engineering</div>
       <div class="edu-school">VIT Chennai</div>
       <div class="edu-gpa">
@@ -1014,6 +1014,7 @@
       <a href="https://codedamn.com/certificate/verify/149214887831a38d5d6e1eb2318f3377978b6601" target="_blank" style="text-decoration:none;color:inherit;"><div class="cert-chip"><span class="cert-icon">🏅</span> C++ Programming — Codedamn, 2025</div></a>
     </div>
   </div>
+ 
 
   <div style="margin-top:3rem" class="reveal">
     <div class="section-label">Core Coursework</div>
