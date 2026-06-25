@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -11,61 +10,460 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
- {--bg: #080b10;--bg2: #0d1117;--bg3: #111820;--surface: #161d28;--surface2: #1c2636;--border: rgba(99,185,255,0.08);--border2: rgba(99,185,255,0.15);--accent: #63b9ff;--accent2: #3dd9b0;--accent3: #f5a623;--text: #e8eef5;--muted: #7a8fa8;--dim: #3a4a5c;--font-head: 'Syne', sans-serif;--font-body: 'Outfit', sans-serif;--font-mono: 'DM Mono', monospace;}
+  :root {
+    --bg: #080b10;
+    --bg2: #0d1117;
+    --bg3: #111820;
+    --surface: #161d28;
+    --surface2: #1c2636;
+    --border: rgba(99,185,255,0.08);
+    --border2: rgba(99,185,255,0.15);
+    --accent: #63b9ff;
+    --accent2: #3dd9b0;
+    --accent3: #f5a623;
+    --text: #e8eef5;
+    --muted: #7a8fa8;
+    --dim: #3a4a5c;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-body {background: var(--bg);color: var(--text);font-family: var(--font-body);font-size: 16px;line-height: 1.7;overflow-x: hidden;}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-::-webkit-scrollbar { width: 5px; }::-webkit-scrollbar-track { background: var(--bg); }::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 99px; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 99px; }
 
-nav {position: fixed; top: 0; left: 0; right: 0; z-index: 100;display: flex; align-items: center; justify-content: space-between;padding: 1.1rem 5vw;background: rgba(8,11,16,0.85);backdrop-filter: blur(18px);border-bottom: 1px solid var(--border);transition: all 0.3s;}.nav-logo {font-family: var(--font-head);font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em;color: var(--text);text-decoration: none;}.nav-logo span { color: var(--accent); }.nav-links { display: flex; gap: 2rem; list-style: none; }.nav-links a {font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;text-transform: uppercase; color: var(--muted);text-decoration: none; transition: color 0.2s;}.nav-links a { color: var(--accent); }.nav-cta {font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;text-transform: uppercase; color: var(--bg);background: var(--accent);padding: 0.5rem 1.2rem; border-radius: 4px;text-decoration: none; transition: opacity 0.2s;}.nav-cta { opacity: 0.85; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5vw;
+    background: rgba(8,11,16,0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--bg);
+    background: var(--accent);
+    padding: 0.5rem 1.2rem; border-radius: 4px;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
 
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }.mobile-menu { display: none; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+  .mobile-menu { display: none; }
 
-#hero {min-height: 100vh;display: flex; align-items: center;padding: 8rem 5vw 4rem;position: relative; overflow: hidden;}.hero-grid-bg {position: absolute; inset: 0; pointer-events: none;background-image:linear-gradient(rgba(99,185,255,0.04) 1px, transparent 1px),linear-gradient(90deg, rgba(99,185,255,0.04) 1px, transparent 1px);background-size: 60px 60px;mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);}.hero-glow {position: absolute; top: -200px; left: -200px;width: 700px; height: 700px; border-radius: 50%;background: radial-gradient(circle, rgba(99,185,255,0.06) 0%, transparent 70%);pointer-events: none;}.hero-glow2 {position: absolute; bottom: -150px; right: 5vw;width: 500px; height: 500px; border-radius: 50%;background: radial-gradient(circle, rgba(61,217,176,0.05) 0%, transparent 70%);pointer-events: none;}.hero-content { position: relative; z-index: 1; max-width: 820px; }.hero-tag {display: inline-flex; align-items: center; gap: 8px;font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent2);border: 1px solid rgba(61,217,176,0.2); border-radius: 99px;padding: 0.3rem 0.9rem; margin-bottom: 1.8rem;opacity: 0; animation: fadeUp 0.6s 0.2s forwards;}.hero-tag::before {content: ''; width: 6px; height: 6px; border-radius: 50%;background: var(--accent2); animation: pulse 2s infinite;}@keyframes pulse { 0%,100%{opacity:1;transform(1)} 50%{opacity:0.4;transform(1.4)} }
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5vw 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(99,185,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,185,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+  }
+  .hero-glow {
+    position: absolute; top: -200px; left: -200px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(99,185,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute; bottom: -150px; right: 5vw;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,217,176,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 820px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent2);
+    border: 1px solid rgba(61,217,176,0.2); border-radius: 99px;
+    padding: 0.3rem 0.9rem; margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
 
-h1 {font-family: var(--font-head);font-size: clamp(2.8rem, 7vw, 5.5rem);font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;color: var(--text);opacity: 0; animation: fadeUp 0.7s 0.4s forwards;}h1 .accent-name { color: var(--accent); }.hero-sub {font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; color: var(--muted);max-width: 560px; margin: 1.4rem 0 2.4rem;opacity: 0; animation: fadeUp 0.7s 0.6s forwards;}.hero-btns {display: flex; gap: 1rem; flex-wrap: wrap;opacity: 0; animation: fadeUp 0.7s 0.8s forwards;}.btn-primary {display: inline-flex; align-items: center; gap: 8px;background: var(--accent); color: var(--bg);font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;padding: 0.8rem 1.8rem; border-radius: 6px;text-decoration: none; transition: all 0.25s;border: none; cursor: pointer;}.btn-primary { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,185,255,0.3); }.btn-outline {display: inline-flex; align-items: center; gap: 8px;background: transparent; color: var(--text);font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;padding: 0.8rem 1.8rem; border-radius: 6px; border: 1px solid var(--border2);text-decoration: none; transition: all 0.25s; cursor: pointer;}.btn-outline { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }.hero-stats {display: flex; gap: 3rem; margin-top: 4rem; flex-wrap: wrap;opacity: 0; animation: fadeUp 0.7s 1s forwards;}.stat-num {font-family: var(--font-head); font-size: 2rem; font-weight: 800;color: var(--accent); line-height: 1;}.stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }.hero-scroll {position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);display: flex; flex-direction: column; align-items: center; gap: 6px;font-size: 0.72rem; letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase;animation: fadeIn 1s 1.5s forwards; opacity: 0;}.scroll-line { width: 1px; height: 40px; background: linear-gradient(var(--accent), transparent); animation: scrollAnim 2s infinite; }@keyframes scrollAnim { 0%{transform(0);transform-origin} 50%{transform(1);transform-origin} 51%{transform-origin} 100%{transform(0);transform-origin} }
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text);
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+  }
+  h1 .accent-name { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; color: var(--muted);
+    max-width: 560px; margin: 1.4rem 0 2.4rem;
+    opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.8s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: var(--bg);
+    font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
+    padding: 0.8rem 1.8rem; border-radius: 6px;
+    text-decoration: none; transition: all 0.25s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,185,255,0.3); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text);
+    font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+    padding: 0.8rem 1.8rem; border-radius: 6px; border: 1px solid var(--border2);
+    text-decoration: none; transition: all 0.25s; cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 1s forwards;
+  }
+  .stat-num {
+    font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-size: 0.72rem; letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase;
+    animation: fadeIn 1s 1.5s forwards; opacity: 0;
+  }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(var(--accent), transparent); animation: scrollAnim 2s infinite; }
+  @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
-section { padding: 7rem 5vw; }.section-label {font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em;text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem;}.section-title {font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.8rem);font-weight: 800; letter-spacing: -0.02em; color: var(--text);line-height: 1.15; margin-bottom: 1rem;}.section-line {width: 48px; height: 3px; border-radius: 99px;background: linear-gradient(90deg, var(--accent), var(--accent2));margin-bottom: 3rem;}
+  section { padding: 7rem 5vw; }
+  .section-label {
+    font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.02em; color: var(--text);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-line {
+    width: 48px; height: 3px; border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    margin-bottom: 3rem;
+  }
 
-#about { background: var(--bg2); }.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }.about-avatar-wrap { position: relative; }.about-avatar {width: 100%; aspect-ratio: 1;border-radius: 20px;background: var(--surface);border: 1px solid var(--border2);display: flex; align-items: center; justify-content: center;overflow: hidden; position: relative;}.avatar-initials {font-family: var(--font-head); font-size: 5rem; font-weight: 800;color: var(--accent); letter-spacing: -0.05em;}.avatar-corner {position: absolute; bottom: -1px; right: -1px;width: 60%; height: 60%;border-top-left-radius: 20px;background: linear-gradient(135deg, transparent 50%, rgba(99,185,255,0.07) 50%);}.about-badge {position: absolute; bottom: -1.2rem; left: -1rem;background: var(--surface2); border: 1px solid var(--border2);border-radius: 12px; padding: 0.7rem 1.1rem;display: flex; align-items: center; gap: 10px;}.badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); animation: pulse 2s infinite; }.badge-text { font-size: 0.8rem; font-weight: 500; color: var(--text); }.about-text p { color: var(--muted); font-size: 1.05rem; font-weight: 300; margin-bottom: 1.2rem; }.about-text p strong { color: var(--text); font-weight: 500; }.about-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }.chip {font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;color: var(--accent); background: rgba(99,185,255,0.08);border: 1px solid rgba(99,185,255,0.15); border-radius: 99px;padding: 0.3rem 0.85rem;}
+  #about { background: var(--bg2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+  .about-avatar-wrap { position: relative; }
+  .about-avatar {
+    width: 100%; aspect-ratio: 1;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .avatar-initials {
+    font-family: var(--font-head); font-size: 5rem; font-weight: 800;
+    color: var(--accent); letter-spacing: -0.05em;
+  }
+  .avatar-corner {
+    position: absolute; bottom: -1px; right: -1px;
+    width: 60%; height: 60%;
+    border-top-left-radius: 20px;
+    background: linear-gradient(135deg, transparent 50%, rgba(99,185,255,0.07) 50%);
+  }
+  .about-badge {
+    position: absolute; bottom: -1.2rem; left: -1rem;
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 12px; padding: 0.7rem 1.1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); animation: pulse 2s infinite; }
+  .badge-text { font-size: 0.8rem; font-weight: 500; color: var(--text); }
+  .about-text p { color: var(--muted); font-size: 1.05rem; font-weight: 300; margin-bottom: 1.2rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
+  .chip {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--accent); background: rgba(99,185,255,0.08);
+    border: 1px solid rgba(99,185,255,0.15); border-radius: 99px;
+    padding: 0.3rem 0.85rem;
+  }
 
-#skills { background: var(--bg); }.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }.skill-card {background: var(--surface); border: 1px solid var(--border);border-radius: 14px; padding: 1.6rem 1.8rem;transition: all 0.3s; position: relative; overflow: hidden;}.skill-card::before {content: ''; position: absolute; inset: 0;background: linear-gradient(135deg, rgba(99,185,255,0.04) 0%, transparent 60%);opacity: 0; transition: opacity 0.3s;}.skill-card { border-color: var(--border2); transform: translateY(-4px); }.skill-card:hover::before { opacity: 1; }.skill-icon { font-size: 1.6rem; margin-bottom: 1rem; }.skill-cat {font-family: var(--font-head); font-size: 1rem; font-weight: 700;color: var(--text); margin-bottom: 0.8rem; letter-spacing: -0.01em;}.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }.skill-tag {font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);background: var(--bg3); border: 1px solid var(--dim); border-radius: 4px;padding: 0.2rem 0.6rem; transition: all 0.2s;}.skill-card .skill-tag { color: var(--accent); border-color: rgba(99,185,255,0.25); }
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.6rem 1.8rem;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .skill-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(99,185,255,0.04) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+  .skill-cat {
+    font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+    color: var(--text); margin-bottom: 0.8rem; letter-spacing: -0.01em;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
+    background: var(--bg3); border: 1px solid var(--dim); border-radius: 4px;
+    padding: 0.2rem 0.6rem; transition: all 0.2s;
+  }
+  .skill-card:hover .skill-tag { color: var(--accent); border-color: rgba(99,185,255,0.25); }
 
-.skill-bars { margin-top: 3rem; display: grid; gap: 1rem; max-width: 700px; }.bar-row { display: flex; align-items: center; gap: 1rem; }.bar-label { font-size: 0.85rem; font-weight: 500; color: var(--muted); min-width: 80px; }.bar-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; }.bar-fill {height: 100%; border-radius: 99px;background: linear-gradient(90deg, var(--accent), var(--accent2));width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1);}.bar-pct { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); min-width: 36px; text-align: right; }
+  .skill-bars { margin-top: 3rem; display: grid; gap: 1rem; max-width: 700px; }
+  .bar-row { display: flex; align-items: center; gap: 1rem; }
+  .bar-label { font-size: 0.85rem; font-weight: 500; color: var(--muted); min-width: 80px; }
+  .bar-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .bar-pct { font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim); min-width: 36px; text-align: right; }
 
-#projects { background: var(--bg2); }.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }.project-card {background: var(--surface); border: 1px solid var(--border);border-radius: 16px; padding: 2rem; cursor: default;display: flex; flex-direction: column; gap: 1rem;transition: all 0.35s; position: relative; overflow: hidden;}.project-card::after {content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;background: linear-gradient(90deg, var(--accent), var(--accent2));transform: scaleX(0); transform-origin: left; transition: transform 0.35s;}.project-card { border-color: rgba(99,185,255,0.2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }.project-card:hover::after { transform: scaleX(1); }
+  #projects { background: var(--bg2); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem; cursor: default;
+    display: flex; flex-direction: column; gap: 1rem;
+    transition: all 0.35s; position: relative; overflow: hidden;
+  }
+  .project-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+  }
+  .project-card:hover { border-color: rgba(99,185,255,0.2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .project-card:hover::after { transform: scaleX(1); }
 
-/* ── ANNE featured card ── */.project-card.featured {border-color: rgba(99,185,255,0.2);background: linear-gradient(135deg, #161d28 60%, rgba(99,185,255,0.04));}.project-card.featured::after { background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
+  /* ── ANNE featured card ── */
+  .project-card.featured {
+    border-color: rgba(99,185,255,0.2);
+    background: linear-gradient(135deg, #161d28 60%, rgba(99,185,255,0.04));
+  }
+  .project-card.featured::after { background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
 
-.project-num {font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim);letter-spacing: 0.1em;}.project-title {font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;color: var(--text); line-height: 1.3; letter-spacing: -0.01em;}.project-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; flex: 1; }.project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }.tech-pill {font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2);background: rgba(61,217,176,0.07); border: 1px solid rgba(61,217,176,0.15);border-radius: 4px; padding: 0.2rem 0.6rem;}.project-status {display: inline-flex; align-items: center; gap: 5px;font-size: 0.72rem; color: var(--accent3);font-family: var(--font-mono);}.project-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }.project-status.done { color: var(--accent2); }.project-status.done::before { background: var(--accent2); animation: none; }
+  .project-num {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--dim);
+    letter-spacing: 0.1em;
+  }
+  .project-title {
+    font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+    color: var(--text); line-height: 1.3; letter-spacing: -0.01em;
+  }
+  .project-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; flex: 1; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .tech-pill {
+    font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2);
+    background: rgba(61,217,176,0.07); border: 1px solid rgba(61,217,176,0.15);
+    border-radius: 4px; padding: 0.2rem 0.6rem;
+  }
+  .project-status {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.72rem; color: var(--accent3);
+    font-family: var(--font-mono);
+  }
+  .project-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }
+  .project-status.done { color: var(--accent2); }
+  .project-status.done::before { background: var(--accent2); animation: none; }
 
-/* ANNE metrics strip */.anne-metrics {display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;}.anne-metric {font-family: var(--font-mono); font-size: 0.72rem;background: rgba(99,185,255,0.08); border: 1px solid rgba(99,185,255,0.18);border-radius: 6px; padding: 0.3rem 0.7rem; color: var(--accent);white-space: nowrap;}
+  /* ANNE metrics strip */
+  .anne-metrics {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;
+  }
+  .anne-metric {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    background: rgba(99,185,255,0.08); border: 1px solid rgba(99,185,255,0.18);
+    border-radius: 6px; padding: 0.3rem 0.7rem; color: var(--accent);
+    white-space: nowrap;
+  }
 
-/* ANNE bullet points */.anne-bullets { list-style: none; margin-top: 2px; }.anne-bullets li {font-size: 0.85rem; color: var(--muted); font-weight: 300;padding: 0.2rem 0; display: flex; gap: 0.6rem; line-height: 1.55;}.anne-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }.anne-bullets li strong { color: var(--text); font-weight: 500; }
+  /* ANNE bullet points */
+  .anne-bullets { list-style: none; margin-top: 2px; }
+  .anne-bullets li {
+    font-size: 0.85rem; color: var(--muted); font-weight: 300;
+    padding: 0.2rem 0; display: flex; gap: 0.6rem; line-height: 1.55;
+  }
+  .anne-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }
+  .anne-bullets li strong { color: var(--text); font-weight: 500; }
 
-.anne-github {display: inline-flex; align-items: center; gap: 6px;font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);text-decoration: none; border: 1px solid rgba(99,185,255,0.2);border-radius: 6px; padding: 0.3rem 0.8rem; margin-top: 2px;transition: all 0.2s; width: fit-content;}.anne-github { background: rgba(99,185,255,0.08); }
+  .anne-github {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
+    text-decoration: none; border: 1px solid rgba(99,185,255,0.2);
+    border-radius: 6px; padding: 0.3rem 0.8rem; margin-top: 2px;
+    transition: all 0.2s; width: fit-content;
+  }
+  .anne-github:hover { background: rgba(99,185,255,0.08); }
 
-#experience { background: var(--bg); }.timeline { position: relative; padding-left: 2.5rem; }.timeline::before {content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px;background: linear-gradient(var(--accent), var(--accent2), transparent);}.tl-item { position: relative; margin-bottom: 3.5rem; }.tl-dot {position: absolute; left: -2.5rem; top: 6px;width: 12px; height: 12px; border-radius: 50%;background: var(--accent); border: 2px solid var(--bg);box-shadow: 0 0 0 3px rgba(99,185,255,0.2);}.tl-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem; }.tl-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }.tl-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); background: rgba(99,185,255,0.08); border: 1px solid rgba(99,185,255,0.15); border-radius: 99px; padding: 0.2rem 0.75rem; white-space: nowrap; }.tl-org { font-size: 0.85rem; color: var(--accent2); font-weight: 500; margin-bottom: 0.8rem; }.tl-bullets { list-style: none; }.tl-bullets li {font-size: 0.9rem; color: var(--muted); font-weight: 300; padding: 0.25rem 0;display: flex; gap: 0.7rem;}.tl-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
+  #experience { background: var(--bg); }
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px;
+    background: linear-gradient(var(--accent), var(--accent2), transparent);
+  }
+  .tl-item { position: relative; margin-bottom: 3.5rem; }
+  .tl-dot {
+    position: absolute; left: -2.5rem; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(99,185,255,0.2);
+  }
+  .tl-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem; }
+  .tl-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .tl-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); background: rgba(99,185,255,0.08); border: 1px solid rgba(99,185,255,0.15); border-radius: 99px; padding: 0.2rem 0.75rem; white-space: nowrap; }
+  .tl-org { font-size: 0.85rem; color: var(--accent2); font-weight: 500; margin-bottom: 0.8rem; }
+  .tl-bullets { list-style: none; }
+  .tl-bullets li {
+    font-size: 0.9rem; color: var(--muted); font-weight: 300; padding: 0.25rem 0;
+    display: flex; gap: 0.7rem;
+  }
+  .tl-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
 
-#education { background: var(--bg2); }.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }.edu-card {background: var(--surface); border: 1px solid var(--border);border-radius: 16px; padding: 1.8rem; position: relative; overflow: hidden;transition: all 0.3s;}.edu-card { border-color: var(--border2); transform: translateY(-4px); }.edu-year {font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);letter-spacing: 0.1em; margin-bottom: 0.8rem;}.edu-degree { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; letter-spacing: -0.01em; }.edu-school { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }.edu-gpa {display: inline-flex; align-items: center; gap: 6px;font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent2);background: rgba(61,217,176,0.07); border: 1px solid rgba(61,217,176,0.15);border-radius: 6px; padding: 0.35rem 0.8rem;}.edu-deco {position: absolute; bottom: -20px; right: -20px;width: 80px; height: 80px; border-radius: 50%;background: rgba(99,185,255,0.04); border: 1px solid rgba(99,185,255,0.08);}
+  #education { background: var(--bg2); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.8rem; position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .edu-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+  .edu-year {
+    font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.1em; margin-bottom: 0.8rem;
+  }
+  .edu-degree { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+  .edu-school { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+  .edu-gpa {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent2);
+    background: rgba(61,217,176,0.07); border: 1px solid rgba(61,217,176,0.15);
+    border-radius: 6px; padding: 0.35rem 0.8rem;
+  }
+  .edu-deco {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(99,185,255,0.04); border: 1px solid rgba(99,185,255,0.08);
+  }
 
-.cert-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }.cert-chip {display: inline-flex; align-items: center; gap: 8px;background: var(--surface); border: 1px solid var(--border);border-radius: 10px; padding: 0.7rem 1.1rem;font-size: 0.85rem; color: var(--text); font-weight: 400;transition: all 0.2s;}.cert-chip { border-color: var(--accent3); color: var(--accent3); }.cert-icon { font-size: 1rem; }
+  .cert-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+  .cert-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.7rem 1.1rem;
+    font-size: 0.85rem; color: var(--text); font-weight: 400;
+    transition: all 0.2s;
+  }
+  .cert-chip:hover { border-color: var(--accent3); color: var(--accent3); }
+  .cert-icon { font-size: 1rem; }
 
-#contact { background: var(--bg); }.contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }.contact-headline {font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem);font-weight: 800; letter-spacing: -0.03em; color: var(--text);margin-bottom: 1.2rem;}.contact-headline span { color: var(--accent); }.contact-sub { color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; font-size: 1.05rem; }.contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }.contact-link {display: inline-flex; align-items: center; gap: 8px;font-size: 0.88rem; font-weight: 500; color: var(--muted);background: var(--surface); border: 1px solid var(--border);border-radius: 10px; padding: 0.75rem 1.4rem;text-decoration: none; transition: all 0.25s;}.contact-link { color: var(--accent); border-color: rgba(99,185,255,0.3); transform: translateY(-2px); }.contact-link svg { width: 16px; height: 16px; }.contact-divider { width: 100%; height: 1px; background: var(--border); margin: 2rem 0; }.contact-email {font-family: var(--font-head); font-size: 1.4rem; font-weight: 700;color: var(--text); text-decoration: none; border-bottom: 2px solid transparent;padding-bottom: 2px; transition: all 0.25s; letter-spacing: -0.02em;}.contact-email { color: var(--accent); border-color: var(--accent); }
+  #contact { background: var(--bg); }
+  .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .contact-headline {
+    font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800; letter-spacing: -0.03em; color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+  .contact-headline span { color: var(--accent); }
+  .contact-sub { color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; font-size: 1.05rem; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.88rem; font-weight: 500; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.75rem 1.4rem;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .contact-link:hover { color: var(--accent); border-color: rgba(99,185,255,0.3); transform: translateY(-2px); }
+  .contact-link svg { width: 16px; height: 16px; }
+  .contact-divider { width: 100%; height: 1px; background: var(--border); margin: 2rem 0; }
+  .contact-email {
+    font-family: var(--font-head); font-size: 1.4rem; font-weight: 700;
+    color: var(--text); text-decoration: none; border-bottom: 2px solid transparent;
+    padding-bottom: 2px; transition: all 0.25s; letter-spacing: -0.02em;
+  }
+  .contact-email:hover { color: var(--accent); border-color: var(--accent); }
 
-footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border);font-size: 0.8rem; color: var(--dim);font-family: var(--font-mono); letter-spacing: 0.04em;}footer span { color: var(--accent); }
+  footer {
+    text-align: center; padding: 2rem 5vw;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--dim);
+    font-family: var(--font-mono); letter-spacing: 0.04em;
+  }
+  footer span { color: var(--accent); }
 
-@keyframes fadeUp { from{opacity:0;transform(24px)} to{opacity:1;transform(0)} }@keyframes fadeIn { from{opacity:0} to{opacity:1} }.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }.reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 768px) {.nav-links, .nav-cta { display: none; }.hamburger { display: flex; }.mobile-menu {display: none; flex-direction: column; gap: 1.2rem;padding: 1.5rem 5vw 2rem; background: var(--bg2);border-bottom: 1px solid var(--border);}.mobile-menu.open { display: flex; }.mobile-menu a { font-size: 1rem; color: var(--muted); text-decoration: none; font-weight: 500; }.about-grid { grid-template-columns: 1fr; gap: 3rem; }.about-avatar { max-width: 260px; margin: 0 auto; }.projects-grid { grid-template-columns: 1fr; }section { padding: 5rem 5vw; }.hero-stats { gap: 2rem; }.hero-scroll { display: none; }}</style>
-
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 1.2rem;
+      padding: 1.5rem 5vw 2rem; background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 1rem; color: var(--muted); text-decoration: none; font-weight: 500; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-avatar { max-width: 260px; margin: 0 auto; }
+    .projects-grid { grid-template-columns: 1fr; }
+    section { padding: 5rem 5vw; }
+    .hero-stats { gap: 2rem; }
+    .hero-scroll { display: none; }
+  }
+</style>
 </head>
 <body>
 
 <!-- NAV -->
-
 <nav id="navbar">
   <a href="#hero" class="nav-logo">NK<span>.</span></a>
   <ul class="nav-links">
@@ -90,7 +488,6 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
 </div>
 
 <!-- HERO -->
-
 <section id="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
@@ -140,7 +537,6 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
 </section>
 
 <!-- ABOUT -->
-
 <section id="about">
   <div class="about-grid">
     <div class="about-avatar-wrap reveal">
@@ -178,7 +574,6 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
 </section>
 
 <!-- SKILLS -->
-
 <section id="skills">
   <div class="reveal">
     <div class="section-label">Technical Arsenal</div>
@@ -303,7 +698,6 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
 </section>
 
 <!-- PROJECTS -->
-
 <section id="projects">
   <div class="reveal">
     <div class="section-label">Selected Work</div>
@@ -312,146 +706,145 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
   </div>
   <div class="projects-grid">
 
-<!-- ── ANNE — only card changed ── -->
-<div class="project-card featured reveal">
-  <div class="project-num">01 &mdash; Systems Engineering</div>
-  <div class="project-title">ANNE — Approximate Nearest Neighbor Engine</div>
+    <!-- ── ANNE — only card changed ── -->
+    <div class="project-card featured reveal">
+      <div class="project-num">01 &mdash; Systems Engineering</div>
+      <div class="project-title">ANNE — Approximate Nearest Neighbor Engine</div>
 
-  <div class="anne-metrics">
-    <span class="anne-metric">99.6% recall@10</span>
-    <span class="anne-metric">100× vs brute-force</span>
-    <span class="anne-metric">4.9× SIMD speedup</span>
-    <span class="anne-metric">1M SIFT vectors</span>
-  </div>
+      <div class="anne-metrics">
+        <span class="anne-metric">99.6% recall@10</span>
+        <span class="anne-metric">100× vs brute-force</span>
+        <span class="anne-metric">4.9× SIMD speedup</span>
+        <span class="anne-metric">1M SIFT vectors</span>
+      </div>
 
-  <ul class="anne-bullets">
-    <li>Implemented HNSW graph algorithm from scratch in C++17; indexed <strong>1M SIFT vectors</strong> achieving <strong>99.6% recall@10</strong> — within margin of production libraries like Faiss on the standard SIFT1M benchmark</li>
-    <li>Hand-wrote AVX2 SIMD distance kernels (_mm256_fmadd_ps) processing 8 floats/instruction; <strong>4.9× faster</strong> than scalar baseline on the search hot path</li>
-    <li>Delivered <strong>100× speedup</strong> over brute-force at 94% recall via cache-efficient flat vector storage and O(1) generation-based visited tracking</li>
-    <li>Shipped with <strong>45 Google Test unit tests</strong>, Google Benchmark microbenchmarks, and GitHub Actions CI pipeline</li>
-  </ul>
+      <ul class="anne-bullets">
+        <li>Implemented HNSW graph algorithm from scratch in C++17; indexed <strong>1M SIFT vectors</strong> achieving <strong>99.6% recall@10</strong> — within margin of production libraries like Faiss on the standard SIFT1M benchmark</li>
+        <li>Hand-wrote AVX2 SIMD distance kernels (_mm256_fmadd_ps) processing 8 floats/instruction; <strong>4.9× faster</strong> than scalar baseline on the search hot path</li>
+        <li>Delivered <strong>100× speedup</strong> over brute-force at 94% recall via cache-efficient flat vector storage and O(1) generation-based visited tracking</li>
+        <li>Shipped with <strong>45 Google Test unit tests</strong>, Google Benchmark microbenchmarks, and GitHub Actions CI pipeline</li>
+      </ul>
 
-  <a href="https://github.com/niharikakanithi9-lab/ANNE" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-    github.com/niharikakanithi9-lab/ANNE
-  </a>
-  <div class="project-status done">Completed · SIFT1M Benchmarked</div>
-  <div class="project-tech">
-    <span class="tech-pill">C++17</span>
-    <span class="tech-pill">HNSW</span>
-    <span class="tech-pill">AVX2 SIMD</span>
-    <span class="tech-pill">CMake</span>
-    <span class="tech-pill">Google Benchmark</span>
-    <span class="tech-pill">Google Test</span>
-    <span class="tech-pill">GitHub Actions</span>
-  </div>
-</div>
+      <a href="https://github.com/niharikakanithi9-lab/ANNE" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/niharikakanithi9-lab/ANNE
+      </a>
+      <div class="project-status done">Completed · SIFT1M Benchmarked</div>
+      <div class="project-tech">
+        <span class="tech-pill">C++17</span>
+        <span class="tech-pill">HNSW</span>
+        <span class="tech-pill">AVX2 SIMD</span>
+        <span class="tech-pill">CMake</span>
+        <span class="tech-pill">Google Benchmark</span>
+        <span class="tech-pill">Google Test</span>
+        <span class="tech-pill">GitHub Actions</span>
+      </div>
+    </div>
 
-<div class="project-card featured reveal">
-  <div class="project-num">02 &mdash; Systems Engineering</div>
-  <div class="project-title">NeuralRT — High-Performance Neural Network Inference Engine</div>
-
-  <div class="anne-metrics">
-    <span class="anne-metric">197K inferences/sec</span>
-    <span class="anne-metric">5.07µs per-sample</span>
-    <span class="anne-metric">7.3× GEMM speedup</span>
-    <span class="anne-metric">0 heap allocs at runtime</span>
-  </div>
-
-  <ul class="anne-bullets">
-    <li>Built a <strong>zero-dependency neural network inference runtime</strong> in C++17 from scratch — custom tensor abstractions, GEMM / Linear / ReLU operators, and a static graph executor — validated across <strong>48 GoogleTest cases</strong> in 13 suites</li>
-    <li>Improved matrix multiplication throughput by <strong>2.7×–7.3×</strong> over scalar baselines (32×32 to 512×512 workloads) using AVX2+FMA SIMD GEMM kernels with cache-blocking and register-level accumulation</li>
-    <li>Reduced per-inference memory overhead to <strong>zero heap allocations</strong> during execution by designing a topological graph planner with tensor lifetime analysis and buffer-slot reuse</li>
-    <li>Sustained <strong>197K inferences/sec</strong> at batch size 128 with per-sample latency of <strong>5.07µs</strong>, benchmarked across batch sizes 1 to 128</li>
-  </ul>
-
-  <a href="https://github.com/niharikakanithi9-lab/NeuralRT" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-    github.com/niharikakanithi9-lab/NeuralRT
-  </a>
-  <div class="project-status done">Completed · Benchmarked</div>
- <div class="project-tech">
-    <span class="tech-pill">C++17</span>
-    <span class="tech-pill">AVX2 / FMA</span>
-    <span class="tech-pill">SIMD GEMM</span>
-    <span class="tech-pill">CMake</span>
-    <span class="tech-pill">Google Benchmark</span>
-    <span class="tech-pill">GoogleTest</span>
-  </div>
-</div>
-
-<!-- 03: ResQNet — updated with real metrics from resume -->
-<div class="project-card reveal">
-  <div class="project-num">03 &mdash; Full Stack Web Platform</div>
-  <div class="project-title">ResQNet — Real-Time Community Disaster Response Platform</div>
-  <ul class="anne-bullets">
-    <li>Solo-engineered a full-stack emergency response platform supporting <strong>3 user roles</strong> (Citizen, Volunteer, Authority) with JWT-based authentication, role-protected REST API routes, and a modular MySQL schema across 3 independent route modules</li>
-    <li>Enabled real-time GPS SOS dispatch via browser Geolocation API, persisting live coordinates and instantly plotting distress markers on an interactive <strong>Leaflet.js map</strong></li>
-    <li>Improved situational awareness by integrating <strong>4 safe zone categories</strong> (hospitals, police stations, fire stations, relief camps) as dynamic map markers with one-click Google Maps routing</li>
-    <li>Ensured near-real-time alerting across all <strong>5 frontend portals</strong> simultaneously via 5-second auto-polling feed rendering color-coded live disaster warnings</li>
-  </ul>
-
+    <div class="project-card featured reveal">
+      <div class="project-num">02 &mdash; Systems Engineering</div>
+      <div class="project-title">NeuralRT — High-Performance Neural Network Inference Engine</div>
  
- <a href="https://github.com/niharikakanithi9-lab/ResQNet" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-    github.com/niharikakanithi9-lab/ResQNet
-  </a>
-  <div class="project-status">Active Development</div>
-  <div class="project-tech">
-    <span class="tech-pill">Node.js</span>
-    <span class="tech-pill">Express.js</span>
-    <span class="tech-pill">MySQL</span>
-    <span class="tech-pill">JWT Auth</span>
-    <span class="tech-pill">Leaflet.js</span>
-    <span class="tech-pill">OpenStreetMap</span>
-    <span class="tech-pill">Google Maps API</span>
-    <span class="tech-pill">REST APIs</span>
-    <span class="tech-pill">JavaScript</span>
-    <span class="tech-pill">Git/GitHub</span>
-  </div>
-</div>
+      <div class="anne-metrics">
+        <span class="anne-metric">197K inferences/sec</span>
+        <span class="anne-metric">5.07µs per-sample</span>
+        <span class="anne-metric">7.3× GEMM speedup</span>
+        <span class="anne-metric">0 heap allocs at runtime</span>
+      </div>
+ 
+      <ul class="anne-bullets">
+        <li>Built a <strong>zero-dependency neural network inference runtime</strong> in C++17 from scratch — custom tensor abstractions, GEMM / Linear / ReLU operators, and a static graph executor — validated across <strong>48 GoogleTest cases</strong> in 13 suites</li>
+        <li>Improved matrix multiplication throughput by <strong>2.7×–7.3×</strong> over scalar baselines (32×32 to 512×512 workloads) using AVX2+FMA SIMD GEMM kernels with cache-blocking and register-level accumulation</li>
+        <li>Reduced per-inference memory overhead to <strong>zero heap allocations</strong> during execution by designing a topological graph planner with tensor lifetime analysis and buffer-slot reuse</li>
+        <li>Sustained <strong>197K inferences/sec</strong> at batch size 128 with per-sample latency of <strong>5.07µs</strong>, benchmarked across batch sizes 1 to 128</li>
+      </ul>
+ 
+      <a href="https://github.com/niharikakanithi9-lab/NeuralRT" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/niharikakanithi9-lab/NeuralRT
+      </a>
+      <div class="project-status done">Completed · Benchmarked</div>
+     <div class="project-tech">
+        <span class="tech-pill">C++17</span>
+        <span class="tech-pill">AVX2 / FMA</span>
+        <span class="tech-pill">SIMD GEMM</span>
+        <span class="tech-pill">CMake</span>
+        <span class="tech-pill">Google Benchmark</span>
+        <span class="tech-pill">GoogleTest</span>
+      </div>
+    </div>
+ 
+    <!-- 03: ResQNet — updated with real metrics from resume -->
+    <div class="project-card reveal">
+      <div class="project-num">03 &mdash; Full Stack Web Platform</div>
+      <div class="project-title">ResQNet — Real-Time Community Disaster Response Platform</div>
+      <ul class="anne-bullets">
+        <li>Solo-engineered a full-stack emergency response platform supporting <strong>3 user roles</strong> (Citizen, Volunteer, Authority) with JWT-based authentication, role-protected REST API routes, and a modular MySQL schema across 3 independent route modules</li>
+        <li>Enabled real-time GPS SOS dispatch via browser Geolocation API, persisting live coordinates and instantly plotting distress markers on an interactive <strong>Leaflet.js map</strong></li>
+        <li>Improved situational awareness by integrating <strong>4 safe zone categories</strong> (hospitals, police stations, fire stations, relief camps) as dynamic map markers with one-click Google Maps routing</li>
+        <li>Ensured near-real-time alerting across all <strong>5 frontend portals</strong> simultaneously via 5-second auto-polling feed rendering color-coded live disaster warnings</li>
+      </ul>
 
-<div class="project-card reveal">
-  <div class="project-num">04 &mdash; Explainable AI</div>
-  <div class="project-title">SHAP vs LIME: Model Interpretability Study</div>
-  <div class="project-desc">
-    Comparative analysis of SHAP and LIME for tabular classification models. Evaluating explanation stability, feature importance consistency, sensitivity to perturbations, and computational efficiency across Random Forest and XGBoost.
-  </div>
-  <div class="project-status">In Progress</div>
-  <div class="project-tech">
-    <span class="tech-pill">Python</span>
-    <span class="tech-pill">SHAP</span>
-    <span class="tech-pill">LIME</span>
-    <span class="tech-pill">XGBoost</span>
-    <span class="tech-pill">Random Forest</span>
-  </div>
-</div>
+     
+     <a href="https://github.com/niharikakanithi9-lab/ResQNet" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/niharikakanithi9-lab/ResQNet
+      </a>
+      <div class="project-status">Active Development</div>
+      <div class="project-tech">
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Express.js</span>
+        <span class="tech-pill">MySQL</span>
+        <span class="tech-pill">JWT Auth</span>
+        <span class="tech-pill">Leaflet.js</span>
+        <span class="tech-pill">OpenStreetMap</span>
+        <span class="tech-pill">Google Maps API</span>
+        <span class="tech-pill">REST APIs</span>
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">Git/GitHub</span>
+      </div>
+    </div>
 
-<div class="project-card reveal">
-  <div class="project-num">05 &mdash; Embedded Systems</div>
-  <div class="project-title">Soil Moisture Level Monitoring System</div>
-  <div class="project-desc">
-    Developed an automated soil moisture monitoring system using Arduino and Embedded C. Implemented real-time sensor data acquisition, threshold-based alert logic, and actuator control using LEDs and buzzers to improve irrigation efficiency and prevent overwatering.
-  </div>
- <a href="https://github.com/niharikakanithi9-lab/SMMAS" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-    github.com/niharikakanithi9-lab/SMASS
-  </a>
-  <div class="project-status done">Completed</div>
-  <div class="project-tech">
-    <span class="tech-pill">Embedded C</span>
-    <span class="tech-pill">Arduino</span>
-    <span class="tech-pill">Sensors</span>
-    <span class="tech-pill">Microcontrollers</span>
-    <span class="tech-pill">Arduino IDE</span>
-  </div>
-</div>
+    <div class="project-card reveal">
+      <div class="project-num">04 &mdash; Explainable AI</div>
+      <div class="project-title">SHAP vs LIME: Model Interpretability Study</div>
+      <div class="project-desc">
+        Comparative analysis of SHAP and LIME for tabular classification models. Evaluating explanation stability, feature importance consistency, sensitivity to perturbations, and computational efficiency across Random Forest and XGBoost.
+      </div>
+      <div class="project-status">In Progress</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">SHAP</span>
+        <span class="tech-pill">LIME</span>
+        <span class="tech-pill">XGBoost</span>
+        <span class="tech-pill">Random Forest</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">05 &mdash; Embedded Systems</div>
+      <div class="project-title">Soil Moisture Level Monitoring System</div>
+      <div class="project-desc">
+        Developed an automated soil moisture monitoring system using Arduino and Embedded C. Implemented real-time sensor data acquisition, threshold-based alert logic, and actuator control using LEDs and buzzers to improve irrigation efficiency and prevent overwatering.
+      </div>
+     <a href="https://github.com/niharikakanithi9-lab/SMMAS" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/niharikakanithi9-lab/SMASS
+      </a>
+      <div class="project-status done">Completed</div>
+      <div class="project-tech">
+        <span class="tech-pill">Embedded C</span>
+        <span class="tech-pill">Arduino</span>
+        <span class="tech-pill">Sensors</span>
+        <span class="tech-pill">Microcontrollers</span>
+        <span class="tech-pill">Arduino IDE</span>
+      </div>
+    </div>
 
   </div>
 </section>
 
  <!-- VIRTUAL EXPERIENCE -->
-
 <section id="simulations" style="background:var(--bg);">
   <div class="reveal">
     <div class="section-label">Industry Experience</div>
@@ -460,67 +853,66 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
   </div>
   <div class="skills-grid reveal">
 
-<div class="skill-card" style="border-radius:16px;padding:2rem;">
-  <div class="skill-icon">🏦</div>
-  <div class="skill-cat">JPMorgan Chase &amp; Co.</div>
-  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.8rem;">Software Engineering Job Simulation · June 2026</div>
-  <p style="font-size:0.875rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;">
-    Completed hands-on tasks simulating real engineering work at JPMorgan — setting up a local dev environment, integrating Apache Kafka for event-driven data streaming, configuring an H2 in-memory database, building REST API endpoints, and implementing a REST API controller layer.
-  </p>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem;">
-    <span class="tech-pill">Project Setup</span>
-    <span class="tech-pill">Apache Kafka</span>
-    <span class="tech-pill">H2 Database</span>
-    <span class="tech-pill">REST API</span>
-    <span class="tech-pill">Java / Spring</span>
-  </div>
-  <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_6a356af6714441292814ca4e_1782386905966_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    View Certificate
-  </a>
-</div>
+    <div class="skill-card" style="border-radius:16px;padding:2rem;">
+      <div class="skill-icon">🏦</div>
+      <div class="skill-cat">JPMorgan Chase &amp; Co.</div>
+      <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.8rem;">Software Engineering Job Simulation · June 2026</div>
+      <p style="font-size:0.875rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;">
+        Completed hands-on tasks simulating real engineering work at JPMorgan — setting up a local dev environment, integrating Apache Kafka for event-driven data streaming, configuring an H2 in-memory database, building REST API endpoints, and implementing a REST API controller layer.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem;">
+        <span class="tech-pill">Project Setup</span>
+        <span class="tech-pill">Apache Kafka</span>
+        <span class="tech-pill">H2 Database</span>
+        <span class="tech-pill">REST API</span>
+        <span class="tech-pill">Java / Spring</span>
+      </div>
+      <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_6a356af6714441292814ca4e_1782386905966_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        View Certificate
+      </a>
+    </div>
 
-<div class="skill-card" style="border-radius:16px;padding:2rem;">
-  <div class="skill-icon">🛒</div>
-  <div class="skill-cat">Walmart Global Tech</div>
-  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.8rem;">Advanced Software Engineering Job Simulation · June 2026</div>
-  <p style="font-size:0.875rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;">
-    Tackled advanced engineering problems mirroring Walmart's internal tech challenges — working with advanced data structures, designing scalable software architecture, structuring relational database schemas, and performing data munging to clean and transform large datasets.
-  </p>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem;">
-    <span class="tech-pill">Advanced Data Structures</span>
-    <span class="tech-pill">Software Architecture</span>
-    <span class="tech-pill">Relational DB Design</span>
-    <span class="tech-pill">Data Munging</span>
-  </div>
-  <a href="https://www.theforage.com/completion-certificates/prBZoAihniNijyD6d/oX6f9BbCL9kJDJzfg_prBZoAihniNijyD6d_6a356af6714441292814ca4e_1782406015651_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    View Certificate
-  </a>
-</div>
+    <div class="skill-card" style="border-radius:16px;padding:2rem;">
+      <div class="skill-icon">🛒</div>
+      <div class="skill-cat">Walmart Global Tech</div>
+      <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.8rem;">Advanced Software Engineering Job Simulation · June 2026</div>
+      <p style="font-size:0.875rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;">
+        Tackled advanced engineering problems mirroring Walmart's internal tech challenges — working with advanced data structures, designing scalable software architecture, structuring relational database schemas, and performing data munging to clean and transform large datasets.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem;">
+        <span class="tech-pill">Advanced Data Structures</span>
+        <span class="tech-pill">Software Architecture</span>
+        <span class="tech-pill">Relational DB Design</span>
+        <span class="tech-pill">Data Munging</span>
+      </div>
+      <a href="https://www.theforage.com/completion-certificates/prBZoAihniNijyD6d/oX6f9BbCL9kJDJzfg_prBZoAihniNijyD6d_6a356af6714441292814ca4e_1782406015651_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        View Certificate
+      </a>
+    </div>
 
-<div class="skill-card" style="border-radius:16px;padding:2rem;">
-  <div class="skill-icon">🔷</div>
-  <div class="skill-cat">Deloitte</div>
-  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.8rem;">Technology Job Simulation · June 2026</div>
-  <p style="font-size:0.875rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;">
-    Simulated the day-to-day responsibilities of a Deloitte technology consultant — completing practical coding tasks and development challenges that reflect real client-facing engineering work in a consulting environment.
-  </p>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem;">
-    <span class="tech-pill">Coding</span>
-    <span class="tech-pill">Development</span>
-  </div>
-  <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_6a356af6714441292814ca4e_1781889072710_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
-    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    View Certificate
-  </a>
-</div>
+    <div class="skill-card" style="border-radius:16px;padding:2rem;">
+      <div class="skill-icon">🔷</div>
+      <div class="skill-cat">Deloitte</div>
+      <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.8rem;">Technology Job Simulation · June 2026</div>
+      <p style="font-size:0.875rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.2rem;">
+        Simulated the day-to-day responsibilities of a Deloitte technology consultant — completing practical coding tasks and development challenges that reflect real client-facing engineering work in a consulting environment.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem;">
+        <span class="tech-pill">Coding</span>
+        <span class="tech-pill">Development</span>
+      </div>
+      <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_6a356af6714441292814ca4e_1781889072710_completion_certificate.pdf" target="_blank" rel="noopener" class="anne-github">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        View Certificate
+      </a>
+    </div>
 
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-
 <section id="experience">
   <div class="reveal">
     <div class="section-label">Leadership &amp; Activities</div>
@@ -557,7 +949,6 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
 </section>
 
 <!-- EDUCATION -->
-
 <section id="education">
   <div class="reveal">
     <div class="section-label">Academic Journey</div>
@@ -606,6 +997,7 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
       <a href="https://codedamn.com/certificate/verify/149214887831a38d5d6e1eb2318f3377978b6601" target="_blank" style="text-decoration:none;color:inherit;"><div class="cert-chip"><span class="cert-icon">🏅</span> C++ Programming — Codedamn, 2025</div></a>
     </div>
   </div>
+ 
 
   <div style="margin-top:3rem" class="reveal">
     <div class="section-label">Core Coursework</div>
@@ -627,7 +1019,6 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
 </section>
 
 <!-- CONTACT -->
-
 <section id="contact">
   <div class="contact-inner reveal">
     <div class="section-label">Let's Connect</div>
@@ -696,6 +1087,5 @@ footer {text-align: center; padding: 2rem 5vw;border-top: 1px solid var(--border
     c.style.transitionDelay = (i * 0.08) + 's';
   });
 </script>
-
 </body>
 </html>
